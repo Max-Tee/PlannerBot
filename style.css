@@ -1,16 +1,24 @@
 /* Define a color palette */
-:root {
-    --background-color: lightgoldenrodyellow;
-    --text-color: #f2f2f2;
-    --accent-color: #e76f51;
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;500;600;800&display=swap");
 
+:root {
+  --green: #00ff9f;
+  --yellow: #f8ff1d;
+  --purple: #9c7bff;
+  --blue: #4b69fe;
+  --light-purple: #f8e0fa;
+  --light-green: #b2e2bb;
+  --light-yellow: #fbf4a0;
+  --font: "Work Sans", sans-serif;
+  --shadow-1: 1.5vmin 1.5vmin #000;
+  --border: solid 1vmin #000;
+  --border-small: solid 0.65vmin #000;
 }
 
 /* Apply the color palette to the body */
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: 'IBM Plex Mono', monospace;
     font-size: 16px;
     line-height: 1.5;
 }
@@ -33,6 +41,18 @@ button.css-1x8cf1d.edgvbvh10 {
     font-weight: 800;
     color: #000;
     font-size: 4vmin;
+}
+div.block-container.css-1y4p8pa.egzxvld4 {
+    height: 85vmin;
+    aspect-ratio: 5/8;
+    background: var(--blue);
+    border-radius: 4vmin;
+    box-shadow: var(--shadow-1);
+    border: var(--border);
+    position: relative;
+    overflow: visible;
+    padding-block: 4vmin;
+    margin: auto;
 }
 
 .row-widget stButton:hover {
