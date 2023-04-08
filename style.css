@@ -1,0 +1,57 @@
+/* Define a color palette */
+:root {
+    --background-color: lightgoldenrodyellow;
+    --text-color: #f2f2f2;
+    --accent-color: #e76f51;
+
+}
+
+/* Apply the color palette to the body */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#this is working
+button.css-1x8cf1d.edgvbvh10 {
+    position: absolute;
+    bottom: 4vmin;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 32vmin;
+    padding-block: 1.5vmin;
+    border-radius: 3vmin;
+    border: var(--border-small);
+    box-shadow: 0.6vmin 0.6vmin #000;
+    text-align: center;
+    background: var(--yellow);
+    text-decoration: none;
+    font-weight: 800;
+    color: #000;
+    font-size: 4vmin;
+}
+
+.row-widget stButton:hover {
+    background-color: #d1553f;
+}
+
+div.css-1r6slb0.e1tzin5v1 {
+    background-color: lightgoldenrodyellow;
+    padding: 0.25em 0.5em;
+}
+
+
+.streamlit-selectbox {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    border: 1px solid var(--accent-color);
+}
+
+.streamlit-selectbox:hover {
+    border: 1px solid #d1553f;
+}
