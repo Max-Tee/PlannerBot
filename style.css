@@ -43,9 +43,9 @@ button.css-1x8cf1d.edgvbvh10 {
     font-size: 4vmin;
 }
 div.block-container.css-1y4p8pa.egzxvld4 {
-    height: 85vmin;
+    height: auto;
     aspect-ratio: 5/8;
-    background: var(--blue);
+    background: var(--yellow);
     border-radius: 4vmin;
     box-shadow: var(--shadow-1);
     border: var(--border);
