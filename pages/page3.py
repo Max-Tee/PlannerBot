@@ -51,7 +51,7 @@ with st.form("Site Selection"):
 
     for index, row in merged.iterrows():
         color = 'blue' if row['zoning_sim'] == 'RM-4' else 'orange'
-        folium.CircleMarker(location=[row.geometry.y, row.geometry.x], radius=1, fill_color=color, color=color).add_to(m)
+        folium.CircleMarker(location=[row.Centroid.y, row.Centroid.x], radius=1, fill_color=color, color=color).add_to(m)
 
     st_folium(m)
 
