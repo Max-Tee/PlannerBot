@@ -1,0 +1,6 @@
+streamlit
+folium
+requests
+streamlit_folium
+geopandas
+numpy
