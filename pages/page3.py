@@ -45,6 +45,7 @@ with st.form("Site Selection"):
     style_function=lambda x: {'fillColor': 'blue' if x['properties']['zoning_sim'] in ['RM-1','RM-2','RM-3'] else 'orange',
 #                              'color': 'black',
                               'fill_opacity': 1,
+                              'opacity': 0,
                               'weight': 1}
     ).add_to(m)
 
