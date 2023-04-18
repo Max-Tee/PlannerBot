@@ -1,3 +1,4 @@
+
 import streamlit as st 
 import folium
 import requests
@@ -27,31 +28,39 @@ with col3:
 with st.form("Site Selection"):
     st.subheader("Find your site")
 
-    #get parcels 
-    url_parcel = "https://data.sfgov.org/resource/9grn-xjpx.geojson?$limit=1000000"
-    response_parcel_neighborhood = requests.get(url_parcel)
-    parcel_neighborhood = gpd.read_file(response_parcel_neighborhood.text)
-    parcel_neighborhood['Centroid'] = parcel_neighborhood.centroid
-    parcel_neighborhood = parcel_neighborhood.drop('geometry', axis=1)
-
-    #zoning
     zoning_map = "https://data.sfgov.org/resource/yamn-gsa8.geojson?$limit=10000000"
+
     response_zoning = requests.get(zoning_map)
     zoningdata = gpd.read_file(response_zoning.text)
 
-    #merge the datasets together
-    parcel_neighborhood = parcel_neighborhood.set_geometry('Centroid')
-    merged = gpd.sjoin(parcel_neighborhood, zoningdata, how='inner', op='intersects')
+    zoningdata['Zoning'] = np.random.choice(['Zoned', 'Not Zoned'], size=len(zoningdata))
 
-    # create a Folium map centered on the data
-    m = folium.Map(location=[merged.geometry.y.mean(), merged.geometry.x.mean()], zoom_start=16, tiles = 'CartoDB positron',attr="CARTODB")
+    # Create a Folium map centered on the mean of the geometry
+    center = zoningdata.centroid.iloc[0].y, zoningdata.centroid.iloc[0].x
+    m = folium.Map(location=center, zoom_start=14,tiles = 'CartoDB positron',attr="CARTODB")
 
-    # create a GeoJSON layer for the data
-    #geojson = folium.GeoJson(parcel_neighborhood_filt)
+    folium.GeoJson(
+    data=zoningdata,
+    name='My Layer',
+    style_function=lambda x: {'fillColor': 'blue' if x['properties']['zoning_sim'] in ['RM-1','RM-2','RM-3'] else 'orange',
+#                              'color': 'black',
+                              'fill_opacity': 1,
+                              'weight': 1}
+    ).add_to(m)
 
-    for index, row in merged.iterrows():
-        color = 'blue' if row['zoning_sim'] == 'RM-4' else 'orange'
-        folium.CircleMarker(location=[row.Centroid.y, row.Centroid.x], radius=1, fill_color=color, color=color).add_to(m)
+    # add a layer control to the map
+    folium.LayerControl().add_to(m)
+
+    # Add the drawing tool to the map
+    #draw_options = {
+    #    'polyline': False,
+    #    'polygon': False,
+    #    'marker': True,
+    #    'circlemarker': False,
+    #    'circle': False
+    #}
+    #draw_tool = plugins.Draw(export=True, draw_options)
+    #draw_tool.add_to(m)
 
     st_folium(m)
 
